@@ -43,8 +43,11 @@ out=$("$apksigner" verify --verbose --print-certs "$apk" 2>&1) || {
 }
 echo "$out"
 
-mapfile -t digests < <(sed -n -E 's/^Signer #[0-9]+ certificate SHA-256 digest: ([0-9a-fA-F]+)$/\1/p' <<<"$out")
-((${#digests[@]} == 1)) || die "expected exactly one signer, found ${#digests[@]}"
+# apksigner 36 prints "Signer #1 certificate SHA-256 digest: ...". Newer versions print one line per
+# signature scheme instead, such as "V2 Signer: certificate SHA-256 digest: ...", so the same
+# certificate can appear more than once. Count distinct certificates.
+mapfile -t digests < <(sed -n -E 's/^(Signer #[0-9]+|V[0-9.]+ Signer( #[0-9]+)?:) certificate SHA-256 digest: ([0-9a-fA-F]+)$/\3/p' <<<"$out" | tr '[:upper:]' '[:lower:]' | sort -u)
+((${#digests[@]} == 1)) || die "expected exactly one signing certificate, found ${#digests[@]}"
 actual=${digests[0],,}
 echo "Signing certificate SHA-256: $actual"
 
