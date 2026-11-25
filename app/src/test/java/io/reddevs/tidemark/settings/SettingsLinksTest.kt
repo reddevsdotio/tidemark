@@ -20,7 +20,7 @@ class SettingsLinksTest {
     fun sourceCodeOpensTheRepositoryInABrowser() {
         val intent = SettingsLinks.sourceCode()
         assertEquals(Intent.ACTION_VIEW, intent.action)
-        assertEquals("https://github.com/reddevs-io/tidemark", intent.dataString)
+        assertEquals("https://github.com/reddevsdotio/tidemark", intent.dataString)
         assertTrue(intent.hasCategory(Intent.CATEGORY_BROWSABLE))
     }
 

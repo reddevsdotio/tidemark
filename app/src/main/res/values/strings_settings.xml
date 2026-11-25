@@ -28,6 +28,6 @@
     <string name="settings_license">License</string>
     <string name="settings_license_value">GNU General Public License v3.0 or later</string>
     <string name="settings_source_code">Source code</string>
-    <string name="settings_source_code_value" translatable="false">github.com/reddevs-io/tidemark</string>
+    <string name="settings_source_code_value" translatable="false">github.com/reddevsdotio/tidemark</string>
     <string name="settings_open_link_failed">No app on this device can open this link.</string>
 </resources>

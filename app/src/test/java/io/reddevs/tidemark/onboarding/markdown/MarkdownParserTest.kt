@@ -84,10 +84,10 @@ class MarkdownParserTest {
         assertEquals(
             listOf(
                 text("Open an "),
-                MarkdownSpan("issue", url = "https://github.com/reddevs-io/tidemark/issues"),
+                MarkdownSpan("issue", url = "https://github.com/reddevsdotio/tidemark/issues"),
                 text("."),
             ),
-            MarkdownParser.parseInline("Open an [issue](https://github.com/reddevs-io/tidemark/issues)."),
+            MarkdownParser.parseInline("Open an [issue](https://github.com/reddevsdotio/tidemark/issues)."),
         )
     }
 
@@ -165,7 +165,7 @@ class MarkdownParserTest {
             - Steps
             - Sleep
 
-            Questions: [GitHub issues](https://github.com/reddevs-io/tidemark/issues).
+            Questions: [GitHub issues](https://github.com/reddevsdotio/tidemark/issues).
         """.trimIndent()
         val blocks = MarkdownParser.parse(policy)
         assertEquals(6, blocks.size)

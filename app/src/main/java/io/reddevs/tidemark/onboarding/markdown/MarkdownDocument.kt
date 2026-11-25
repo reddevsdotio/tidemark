@@ -142,7 +142,7 @@ private fun MarkdownDocumentPreview() {
         - Your unit preference
         - The date you first allowed access
 
-        Questions? Open an issue on [GitHub](https://github.com/reddevs-io/tidemark/issues).
+        Questions? Open an issue on [GitHub](https://github.com/reddevsdotio/tidemark/issues).
     """.trimIndent()
     TidemarkTheme {
         MarkdownDocument(MarkdownParser.parse(sample), contentPadding = PaddingValues(16.dp))

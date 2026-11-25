@@ -65,7 +65,7 @@ Tidemark does not share your data with anyone and does not sell it. It has no wa
 
 ## Open source
 
-Tidemark is free software under the GNU General Public License, version 3 or later. You can read the source code at [github.com/reddevs-io/tidemark](https://github.com/reddevs-io/tidemark) and check every statement in this policy.
+Tidemark is free software under the GNU General Public License, version 3 or later. You can read the source code at [github.com/reddevsdotio/tidemark](https://github.com/reddevsdotio/tidemark) and check every statement in this policy.
 
 ## Changes to this policy
 
@@ -73,4 +73,4 @@ If this policy changes, the new version is published at the same address with a 
 
 ## Contact
 
-Tidemark is made by RedDevs. For questions about this policy, open an issue on [GitHub](https://github.com/reddevs-io/tidemark/issues). Issues are public, so do not include any health data in them.
+Tidemark is made by RedDevs. For questions about this policy, open an issue on [GitHub](https://github.com/reddevsdotio/tidemark/issues). Issues are public, so do not include any health data in them.

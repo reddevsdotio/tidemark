@@ -34,7 +34,7 @@ REQUIREMENTS
 Android 9 or later. On Android 9 to 13, install the Health Connect app from Google Play. On Android 14 and later, Health Connect is part of the system.
 
 FREE SOFTWARE
-Tidemark is open source under the GNU GPL, version 3 or later. Source code: https://github.com/reddevs-io/tidemark
+Tidemark is open source under the GNU GPL, version 3 or later. Source code: https://github.com/reddevsdotio/tidemark
 Privacy policy: https://tidemark.reddevs.io/privacy/
 
 Tidemark is not a medical device and does not give medical advice. Health Connect is a trademark of Google LLC.

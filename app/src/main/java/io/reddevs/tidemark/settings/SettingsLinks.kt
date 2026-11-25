@@ -8,7 +8,7 @@ import androidx.core.net.toUri
 
 /** Intents the settings screen fires. Tidemark itself opens no connection: links go to other apps. */
 internal object SettingsLinks {
-    const val SOURCE_CODE_URL = "https://github.com/reddevs-io/tidemark"
+    const val SOURCE_CODE_URL = "https://github.com/reddevsdotio/tidemark"
 
     fun sourceCode(): Intent =
         Intent(Intent.ACTION_VIEW, SOURCE_CODE_URL.toUri()).addCategory(Intent.CATEGORY_BROWSABLE)
