@@ -135,10 +135,11 @@ Then install through Obtainium by adding `https://github.com/reddevsdotio/tidema
 
 ## Google Play later: Play App Signing with our own key
 
-Google Play must sign with the same key as GitHub Releases, so users can move between channels. When creating the app in the Play Console, don't let Google generate a key.
+Google Play must sign with the same key as GitHub Releases, so users can move between channels. Tidemark's Play app was set up this way on 25 November 2026, before its first upload. These are the steps, for reference or for another app.
 
-1. **Choose your own key.** Under **Test and release → App integrity → Play App Signing**, choose to use your own app signing key, exported from a Java keystore with PEPK.
-2. **Run PEPK.** Download `pepk.jar` and the encryption public key from that page. Run the command the Console shows on the machine that holds the keystore. It looks like this:
+1. **Check which key Play holds.** The Play Console generates an app signing key when the app is created. Open **Test and release → App integrity → Play app signing** (the App signing page) and compare the classical key's SHA-256 certificate fingerprint with the one in [Signing certificate](#signing-certificate). If they differ, replace the key before the first upload. After a release, only a key upgrade is possible, and older Android versions keep the old key.
+2. **Choose to provide the key.** Click **Change key**, then choose **Provide a copy of your app signing key**. Don't pick a key upgrade.
+3. **Run PEPK.** Download Google's encryption key and `pepk.jar` from that dialog, and run PEPK on the machine that holds the keystore. PEPK reads the password from a terminal prompt; without a terminal, pass it with `--keystore-pass`:
 
    ```sh
    java -jar pepk.jar --keystore=tidemark-release.jks --alias=tidemark-release \
@@ -146,9 +147,9 @@ Google Play must sign with the same key as GitHub Releases, so users can move be
      --encryption-key-path=encryption_public_key.pem
    ```
 
-3. **Upload and clean up.** Upload the zip, then delete the zip and the downloaded files.
-4. **Upload the AAB.** The AAB on each GitHub Release is signed with the same key, so it can be uploaded as is. Play accepts the app signing key as the upload key. Registering a separate upload key later would need a change to `release.yml`, since the AAB must then be signed with that key.
-5. **Check the fingerprint.** After the first upload, compare the app signing certificate fingerprint in the Console with the one below.
+   The zip holds the private key encrypted for Google and the certificate. `unzip -p tidemark-play-key.zip certificate.pem | openssl x509 -noout -fingerprint -sha256` shows the fingerprint before you upload.
+4. **Upload, save and check.** Upload the zip as the encrypted private key and leave the optional upload key empty. Save, then check that the App signing page shows our fingerprint. Delete the zip and the downloaded files.
+5. **Upload the AAB.** The AAB on each GitHub Release is signed with the same key, so it can be uploaded as is. Play accepts the app signing key as the upload key. Registering a separate upload key later would need a change to `release.yml`, since the AAB must then be signed with that key.
 
 ## Signing certificate
 
