@@ -152,13 +152,13 @@ Google Play must sign with the same key as GitHub Releases, so users can move be
 
 ## Signing certificate
 
-The release key's certificate fingerprint. It is filled in when the key is created (T-011), and every release must match it.
+The release key's certificate fingerprint. Every release must match it.
 
 | Field | Value |
 | --- | --- |
-| SHA-256 | _not created yet_ |
-| Created | _not created yet_ |
-| Alias | _not created yet_ |
+| SHA-256 | `BF:5F:CB:DF:21:A5:BC:9E:C6:75:37:FD:02:6E:E2:99:46:80:BE:72:60:14:CB:56:23:14:38:93:B2:A6:ED:93` |
+| Created | 25 November 2026, valid until 12 April 2054 (RSA 4096, PKCS12) |
+| Alias | `tidemark-release` |
 
 ## Troubleshooting
 
