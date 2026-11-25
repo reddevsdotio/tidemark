@@ -151,6 +151,16 @@ Google Play must sign with the same key as GitHub Releases, so users can move be
 4. **Upload, save and check.** Upload the zip as the encrypted private key and leave the optional upload key empty. Save, then check that the App signing page shows our fingerprint. Delete the zip and the downloaded files.
 5. **Upload the AAB.** The AAB on each GitHub Release is signed with the same key, so it can be uploaded as is. Play accepts the app signing key as the upload key. Registering a separate upload key later would need a change to `release.yml`, since the AAB must then be signed with that key.
 
+## Store graphics
+
+The Play listing graphics live in `fastlane/metadata/android/<locale>/images/`: `icon.png` (512 x 512), `featureGraphic.png` (1024 x 500) and seven captioned `phoneScreenshots/` (1080 x 1920), in en-US and fr-FR. They are generated, not drawn by hand:
+
+```sh
+scripts/build-store-graphics.py
+```
+
+The script runs `StoreScreenshotTest` with `TIDEMARK_STORE_OUT` set, which renders the app screens on the JVM with the static Shoreline palette and sample data, then frames them with captions in a headless Chrome. Set `CHROME` if Chrome or Chromium isn't on `PATH`. The test is skipped in normal test runs. Rebuild the graphics after a visible UI change, and upload them in **Grow users → Store presence → Main store listing**. The captions are in the script; the sample data is in `DashboardSamples`, `DetailSamples` and the test itself.
+
 ## Signing certificate
 
 The release key's certificate fingerprint. Every release must match it.
