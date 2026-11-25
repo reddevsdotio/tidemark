@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 SITE = "https://tidemark.reddevs.io"
-REPO = "https://github.com/reddevs-io/tidemark"
+REPO = "https://github.com/reddevsdotio/tidemark"
 ROOT = Path(__file__).resolve().parent.parent
 
 PAGES = [

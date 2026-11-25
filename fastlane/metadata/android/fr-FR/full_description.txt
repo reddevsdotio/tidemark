@@ -34,7 +34,7 @@ CONFIGURATION REQUISE
 Android 9 ou version ultérieure. Sur Android 9 à 13, installez l'application Connexion Santé depuis Google Play. Sur Android 14 et versions ultérieures, Connexion Santé est intégrée au système.
 
 LOGICIEL LIBRE
-Tidemark est un logiciel libre distribué sous la licence GNU GPL, version 3 ou ultérieure. Code source : https://github.com/reddevs-io/tidemark
+Tidemark est un logiciel libre distribué sous la licence GNU GPL, version 3 ou ultérieure. Code source : https://github.com/reddevsdotio/tidemark
 Politique de confidentialité : https://tidemark.reddevs.io/fr/privacy/
 
 Tidemark n'est pas un dispositif médical et ne donne aucun conseil médical. Connexion Santé (Health Connect) est une marque de Google LLC.

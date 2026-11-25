@@ -115,7 +115,7 @@ class SettingsScreenTest {
         row(string(R.string.settings_no_network)).assertExists()
         row("9.8.7").assertExists()
         row(string(R.string.settings_license_value)).assertExists()
-        row("github.com/reddevs-io/tidemark").assertExists()
+        row("github.com/reddevsdotio/tidemark").assertExists()
     }
 
     @Test

@@ -56,14 +56,14 @@ The APK also lists `io.reddevs.tidemark.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 
 ### GitHub Releases
 
-Download `tidemark-<version>.apk` from the [releases page](https://github.com/reddevs-io/tidemark/releases) and open it on your phone. Each release also has a `SHA256SUMS` file for checking the download. From the first release on, [docs/release.md](docs/release.md) records the signing certificate's SHA-256 fingerprint, so you can check the APK with `apksigner verify --print-certs`.
+Download `tidemark-<version>.apk` from the [releases page](https://github.com/reddevsdotio/tidemark/releases) and open it on your phone. Each release also has a `SHA256SUMS` file for checking the download. From the first release on, [docs/release.md](docs/release.md) records the signing certificate's SHA-256 fingerprint, so you can check the APK with `apksigner verify --print-certs`.
 
 ### Obtainium
 
 [Obtainium](https://github.com/ImranR98/Obtainium) installs and updates apps straight from their GitHub releases. Add an app with this source URL:
 
 ```text
-https://github.com/reddevs-io/tidemark
+https://github.com/reddevsdotio/tidemark
 ```
 
 Leave pre-releases off unless you want release candidates.
@@ -77,7 +77,7 @@ A Google Play listing will follow once the GitHub releases have settled. Play an
 You need JDK 17 and the Android SDK with the platform for API 37 (`compileSdk` is 37; `targetSdk` stays 36). The Gradle wrapper downloads the right Gradle version.
 
 ```sh
-git clone https://github.com/reddevs-io/tidemark.git
+git clone https://github.com/reddevsdotio/tidemark
 cd tidemark
 ./gradlew assembleDebug
 ```
@@ -95,7 +95,7 @@ To try the app on an emulator, use a Google Play system image on Android 9 to 13
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports and questions go to [GitHub issues](https://github.com/reddevs-io/tidemark/issues). Please don't post your health data in an issue.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports and questions go to [GitHub issues](https://github.com/reddevsdotio/tidemark/issues). Please don't post your health data in an issue.
 
 ## License
 

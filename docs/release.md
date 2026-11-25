@@ -58,7 +58,7 @@ keytool -list -v -keystore tidemark-release.jks -alias tidemark-release | grep '
 Write it in [Signing certificate](#signing-certificate) below and save it as the `TIDEMARK_CERT_SHA256` repository variable. Colons and case don't matter:
 
 ```sh
-gh variable set TIDEMARK_CERT_SHA256 --repo reddevs-io/tidemark --body '<fingerprint>'
+gh variable set TIDEMARK_CERT_SHA256 --repo reddevsdotio/tidemark --body '<fingerprint>'
 ```
 
 ### 2. Back up the key offline
@@ -76,10 +76,10 @@ Create the `release` environment first: **Settings → Environments → New envi
 Then set the secrets. `gh secret set` reads values from stdin or a prompt, so nothing lands in shell history or the clipboard:
 
 ```sh
-base64 -w0 tidemark-release.jks | gh secret set TIDEMARK_KEYSTORE_B64 --repo reddevs-io/tidemark --env release
-gh secret set TIDEMARK_KEYSTORE_PASSWORD --repo reddevs-io/tidemark --env release   # prompts
-gh secret set TIDEMARK_KEY_ALIAS --repo reddevs-io/tidemark --env release           # prompts
-gh secret set TIDEMARK_KEY_PASSWORD --repo reddevs-io/tidemark --env release        # prompts
+base64 -w0 tidemark-release.jks | gh secret set TIDEMARK_KEYSTORE_B64 --repo reddevsdotio/tidemark --env release
+gh secret set TIDEMARK_KEYSTORE_PASSWORD --repo reddevsdotio/tidemark --env release   # prompts
+gh secret set TIDEMARK_KEY_ALIAS --repo reddevsdotio/tidemark --env release           # prompts
+gh secret set TIDEMARK_KEY_PASSWORD --repo reddevsdotio/tidemark --env release        # prompts
 ```
 
 On macOS use `base64 -i tidemark-release.jks` (it doesn't wrap lines). To use repository secrets instead, drop `--env release`.
@@ -93,8 +93,8 @@ On macOS use `base64 -i tidemark-release.jks` (it doesn't wrap lines). To use re
 
 Do these steps in order. Verifying the domain first means nobody else can claim `tidemark.reddevs.io` on GitHub Pages.
 
-1. **Verify the domain for the organization.** In **reddevs-io organization settings → Pages → Add a domain**, enter `reddevs.io`. GitHub shows a TXT record (`_github-pages-challenge-reddevs-io.reddevs.io`). Add it in the reddevs.io DNS, then click **Verify**. Leave the TXT record in place.
-2. **Add the DNS record.** `tidemark.reddevs.io  CNAME  reddevs-io.github.io.` Don't add wildcard records.
+1. **Verify the domain for the organization.** In the **organization settings → Pages → Add a domain**, enter `reddevs.io`. GitHub shows a TXT record (`_github-pages-challenge-reddevsdotio.reddevs.io`). Add it in the reddevs.io DNS, then click **Verify**. Leave the TXT record in place.
+2. **Add the DNS record.** `tidemark.reddevs.io  CNAME  reddevsdotio.github.io.` Don't add wildcard records.
 3. **Set the Pages source.** In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 4. **Set the custom domain.** On the same page, enter `tidemark.reddevs.io` under **Custom domain** and save. Wait for the DNS check and certificate (minutes to an hour), then tick **Enforce HTTPS**. With an Actions-based deployment the custom domain lives in repo settings; no `CNAME` file is needed.
 5. **Publish.** Run the Pages workflow from the Actions tab (**Run workflow**), or push a change to `PRIVACY.md`. Check <https://tidemark.reddevs.io/privacy/> and <https://tidemark.reddevs.io/fr/privacy/> over HTTPS. The workflow warns if the deployed URL is not the custom domain.
@@ -125,13 +125,13 @@ Do these steps in order. Verifying the domain first means nobody else can claim 
 Each run writes the certificate fingerprint and checksums to the job summary. To check the published files:
 
 ```sh
-gh release download v1.0.0 --repo reddevs-io/tidemark --dir /tmp/tidemark-v1.0.0
+gh release download v1.0.0 --repo reddevsdotio/tidemark --dir /tmp/tidemark-v1.0.0
 cd /tmp/tidemark-v1.0.0 && sha256sum -c SHA256SUMS
 scripts/verify-signature.sh /tmp/tidemark-v1.0.0/tidemark-1.0.0.apk '<fingerprint>'
 scripts/check-permissions.sh /tmp/tidemark-v1.0.0/tidemark-1.0.0.apk
 ```
 
-Then install through Obtainium by adding `https://github.com/reddevs-io/tidemark`. It picks the `.apk` asset. After a later release, check that Obtainium offers the update and installs it over the old version.
+Then install through Obtainium by adding `https://github.com/reddevsdotio/tidemark`. It picks the `.apk` asset. After a later release, check that Obtainium offers the update and installs it over the old version.
 
 ## Google Play later: Play App Signing with our own key
 

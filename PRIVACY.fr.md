@@ -65,7 +65,7 @@ Tidemark ne partage vos données avec personne et ne les vend pas. Elle n'a aucu
 
 ## Logiciel libre
 
-Tidemark est un logiciel libre distribué sous la licence publique générale GNU, version 3 ou ultérieure. Vous pouvez lire le code source sur [github.com/reddevs-io/tidemark](https://github.com/reddevs-io/tidemark) et vérifier chaque affirmation de cette politique.
+Tidemark est un logiciel libre distribué sous la licence publique générale GNU, version 3 ou ultérieure. Vous pouvez lire le code source sur [github.com/reddevsdotio/tidemark](https://github.com/reddevsdotio/tidemark) et vérifier chaque affirmation de cette politique.
 
 ## Modifications de cette politique
 
@@ -73,4 +73,4 @@ Si cette politique change, la nouvelle version est publiée à la même adresse 
 
 ## Contact
 
-Tidemark est développée par RedDevs. Pour toute question sur cette politique, ouvrez un ticket sur [GitHub](https://github.com/reddevs-io/tidemark/issues). Les tickets sont publics : n'y indiquez aucune donnée de santé.
+Tidemark est développée par RedDevs. Pour toute question sur cette politique, ouvrez un ticket sur [GitHub](https://github.com/reddevsdotio/tidemark/issues). Les tickets sont publics : n'y indiquez aucune donnée de santé.

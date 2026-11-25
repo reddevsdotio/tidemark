@@ -102,4 +102,4 @@ The permission rule: the merged release APK must request exactly the nine Health
 
 ## Reporting security and privacy problems
 
-Don't open a public issue for a vulnerability or for anything that exposes health data, such as a leak to logs or another app, or a path to the network. Report it privately through GitHub's private vulnerability reporting: <https://github.com/reddevs-io/tidemark/security/advisories/new>. Never paste real health data, screenshots of it or exported records into an issue or pull request; describe the shape of the data or reproduce it with Health Connect Toolbox.
+Don't open a public issue for a vulnerability or for anything that exposes health data, such as a leak to logs or another app, or a path to the network. Report it privately through GitHub's private vulnerability reporting: <https://github.com/reddevsdotio/tidemark/security/advisories/new>. Never paste real health data, screenshots of it or exported records into an issue or pull request; describe the shape of the data or reproduce it with Health Connect Toolbox.
