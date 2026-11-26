@@ -3,6 +3,7 @@ package io.reddevs.tidemark.dashboard.home
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoZoomState
 import com.patrykandpatrick.vico.compose.common.Fill
+import com.patrykandpatrick.vico.compose.common.component.ShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import io.reddevs.tidemark.data.model.Metric
 import io.reddevs.tidemark.ui.components.HighlightColumnProvider
@@ -61,12 +63,21 @@ internal fun Sparkline(data: SparklineData, columns: Boolean, modifier: Modifier
         val max = present.maxOf { it.value!! }
         // Pad the range so a flat line sits in the middle instead of on an edge.
         val pad = maxOf((max - min) * 0.15, 0.5)
+        // A line needs two points, so a single reading is drawn as a dot.
+        val dot = if (present.size == 1) {
+            LineCartesianLayer.PointProvider.single(
+                LineCartesianLayer.Point(ShapeComponent(Fill(color), CircleShape), size = 6.dp),
+            )
+        } else {
+            null
+        }
         rememberLineCartesianLayer(
             lineProvider = LineCartesianLayer.LineProvider.series(
                 LineCartesianLayer.rememberLine(
                     fill = LineCartesianLayer.LineFill.single(Fill(color)),
                     stroke = LineCartesianLayer.LineStroke.Continuous(thickness = 2.dp),
                     areaFill = null,
+                    pointProvider = dot,
                 ),
             ),
             rangeProvider = CartesianLayerRangeProvider.fixed(

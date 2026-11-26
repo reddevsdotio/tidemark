@@ -13,6 +13,8 @@ import io.reddevs.tidemark.data.model.RecordType
 import io.reddevs.tidemark.data.model.Series
 import io.reddevs.tidemark.data.model.SeriesPoint
 import io.reddevs.tidemark.data.model.SleepNight
+import io.reddevs.tidemark.data.model.SleepStage
+import io.reddevs.tidemark.data.model.SleepStageSpan
 import io.reddevs.tidemark.testing.FakeHealthRepository
 import io.reddevs.tidemark.testing.FakeHealthRepository.Call
 import io.reddevs.tidemark.testing.FakeUserPreferences
@@ -112,6 +114,27 @@ class DashboardViewModelTest {
 
         assertNull(state.banner)
         assertFalse(state.isRefreshing)
+    }
+
+    @Test
+    fun sleepTileCountsTimeAsleepNotTimeInBed() {
+        withAllData()
+        fun span(from: String, to: String, stage: SleepStage) =
+            SleepStageSpan(Instant.parse("2026-11-$from:00Z"), Instant.parse("2026-11-$to:00Z"), stage)
+        repo.lastNight = night.copy(
+            stages = listOf(
+                span("18T23:00", "18T23:20", SleepStage.AWAKE_IN_BED),
+                span("18T23:20", "19T03:00", SleepStage.LIGHT),
+                span("19T03:00", "19T03:10", SleepStage.AWAKE),
+                span("19T03:10", "19T06:20", SleepStage.DEEP),
+                span("19T06:20", "19T06:30", SleepStage.OUT_OF_BED),
+            ),
+        )
+
+        val sleep = loaded().state.value.tile(Metric.SLEEP) as TileState.Value
+
+        // 7 h 30 min in bed, minus 20 + 10 + 10 minutes awake or out of bed.
+        assertEquals(Duration.ofMinutes(410).seconds.toDouble(), sleep.value, 0.0)
     }
 
     @Test

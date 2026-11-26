@@ -1,0 +1,3 @@
+• Le sommeil affiche désormais partout le temps endormi. La tuile du tableau de bord comptait le temps passé au lit et ne concordait pas avec les graphiques.
+• Une tendance de fréquence cardiaque au repos ou de poids avec une seule mesure affiche maintenant un point au lieu de rien.
+• Dans la vue du jour, l'étiquette de fréquence cardiaque au repos reste lisible quand la courbe passe derrière.

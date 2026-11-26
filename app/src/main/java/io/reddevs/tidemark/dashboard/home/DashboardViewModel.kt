@@ -3,6 +3,7 @@ package io.reddevs.tidemark.dashboard.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.reddevs.tidemark.dashboard.detail.HypnogramModel
 import io.reddevs.tidemark.data.HealthAccessException
 import io.reddevs.tidemark.data.HealthRepository
 import io.reddevs.tidemark.data.model.HistoryAccess
@@ -22,7 +23,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.Clock
-import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZonedDateTime
@@ -107,7 +107,8 @@ class DashboardViewModel(
                 Metric.STEPS, Metric.ACTIVE_CALORIES, Metric.DISTANCE ->
                     repository.todayTotal(metric, today)?.let { TileState.Value(it, sparkline = null) }
                 Metric.SLEEP -> repository.lastNightSleep(now)?.let { night ->
-                    val seconds = Duration.between(night.start, night.end).seconds.toDouble()
+                    // Time asleep, as in the sleep charts and the day view: awake stages don't count.
+                    val seconds = HypnogramModel.of(night).asleep.seconds.toDouble()
                     TileState.Value(seconds, sparkline = null, sleep = night)
                 }
                 Metric.RESTING_HEART_RATE, Metric.WEIGHT ->

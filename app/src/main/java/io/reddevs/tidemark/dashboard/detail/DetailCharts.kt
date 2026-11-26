@@ -41,6 +41,7 @@ import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoZoomState
 import com.patrykandpatrick.vico.compose.common.Fill
+import com.patrykandpatrick.vico.compose.common.Insets
 import com.patrykandpatrick.vico.compose.common.ProvideVicoTheme
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
@@ -183,7 +184,12 @@ private fun DetailChartHost(
     val axisLine = rememberLineComponent(fill = Fill(colors.outlineVariant), thickness = 1.dp)
     val gridLine = rememberLineComponent(fill = Fill(colors.outlineVariant), thickness = 1.dp)
     val referenceLine = rememberLineComponent(fill = Fill(colors.tertiary), thickness = 2.dp)
-    val referenceText = rememberTextComponent(style = MaterialTheme.typography.labelSmall.copy(color = colors.tertiary))
+    // The label sits on the screen colour, so a heart rate trace passing behind it can't cross the text.
+    val referenceText = rememberTextComponent(
+        style = MaterialTheme.typography.labelSmall.copy(color = colors.tertiary),
+        padding = Insets(horizontal = 4.dp, vertical = 1.dp),
+        background = rememberShapeComponent(fill = Fill(colors.background), shape = RoundedCornerShape(4.dp)),
+    )
     val decorations = remember(spec, referenceLine, referenceText) {
         val y = spec.referenceY ?: return@remember emptyList()
         listOf(
