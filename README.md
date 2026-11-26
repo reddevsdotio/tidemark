@@ -6,11 +6,11 @@ Tidemark is available in English and French. In French, Health Connect is called
 
 ## Screenshots
 
-Screenshots will be added before the first release. They will live in `fastlane/metadata/android/en-US/images/phoneScreenshots/` and `fastlane/metadata/android/fr-FR/images/phoneScreenshots/`, so this README, the Play listing and stores that read fastlane metadata, such as F-Droid and IzzyOnDroid, use the same images.
+| Dashboard | Sleep stages | Record explorer | Record detail |
+| --- | --- | --- | --- |
+| ![Dashboard with today's steps, sleep, resting heart rate and weight](fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png) | ![Last night's sleep as a hypnogram](fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png) | ![Exercise sessions listed by app](fastlane/metadata/android/en-US/images/phoneScreenshots/5_en-US.png) | ![An exercise session with every field, formatted and raw](fastlane/metadata/android/en-US/images/phoneScreenshots/6_en-US.png) |
 
-- Dashboard: *screenshot to come*
-- Metric detail and sleep hypnogram: *screenshot to come*
-- Record explorer and record detail: *screenshot to come*
+These are the Play Store screenshots. `scripts/build-store-graphics.py` renders them from sample data, in English and French, under `fastlane/metadata/android/`, where stores that read fastlane metadata, such as F-Droid and IzzyOnDroid, find them too.
 
 ## What it does
 
@@ -56,7 +56,7 @@ The APK also lists `io.reddevs.tidemark.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 
 ### GitHub Releases
 
-Download `tidemark-<version>.apk` from the [releases page](https://github.com/reddevsdotio/tidemark/releases) and open it on your phone. Each release also has a `SHA256SUMS` file for checking the download. From the first release on, [docs/release.md](docs/release.md) records the signing certificate's SHA-256 fingerprint, so you can check the APK with `apksigner verify --print-certs`.
+Download `tidemark-<version>.apk` from the [releases page](https://github.com/reddevsdotio/tidemark/releases) and open it on your phone. Each release also has a `SHA256SUMS` file for checking the download. [docs/release.md](docs/release.md) records the signing certificate's SHA-256 fingerprint, so you can check the APK with `apksigner verify --print-certs`.
 
 ### Obtainium
 
@@ -70,7 +70,7 @@ Leave pre-releases off unless you want release candidates.
 
 ### Google Play
 
-A Google Play listing will follow once the GitHub releases have settled. Play and GitHub builds use the same signing key, so you can switch between them without uninstalling.
+Install Tidemark from [Google Play](https://play.google.com/store/apps/details?id=io.reddevs.tidemark). Play and GitHub builds use the same signing key, so you can switch between them without uninstalling.
 
 ## Build from source
 
