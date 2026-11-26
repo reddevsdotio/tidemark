@@ -61,13 +61,14 @@ Write it in [Signing certificate](#signing-certificate) below and save it as the
 gh variable set TIDEMARK_CERT_SHA256 --repo reddevsdotio/tidemark --body '<fingerprint>'
 ```
 
-### 2. Back up the key offline
+### 2. Back up the key
 
-- Make two copies of `tidemark-release.jks` on two separate encrypted drives (for example LUKS or VeraCrypt USB drives), kept in different places.
-- Keep the keystore password, key password and alias in the RedDevs password manager. Don't store them next to the drives.
+- Store the keystore, base64-encoded, with its password and alias in the RedDevs secret store. Tidemark's key has been kept there since 25 November 2026, and that is its only copy outside the GitHub secrets and Play.
+- Test the backup once: read it back, decode it and run the `keytool -list` command above against it.
 - Never commit the keystore. `.gitignore` already excludes `*.jks` and `*.keystore`.
-- Test the backup once by running the `keytool -list` command above against each copy.
 - Once the secrets are set, delete any other working copies of the keystore and the base64 text.
+
+The GitHub secrets can't be read back, so they don't count as a copy. Losing the key would stop GitHub and Obtainium installs from updating: users would have to uninstall and reinstall. Play could recover through an upload key reset, because Google holds its own copy as the app signing key.
 
 ### 3. Add the secrets
 
@@ -133,7 +134,7 @@ scripts/check-permissions.sh /tmp/tidemark-v1.0.0/tidemark-1.0.0.apk
 
 Then install through Obtainium by adding `https://github.com/reddevsdotio/tidemark`. It picks the `.apk` asset. After a later release, check that Obtainium offers the update and installs it over the old version.
 
-## Google Play later: Play App Signing with our own key
+## Google Play: Play App Signing with our own key
 
 Google Play must sign with the same key as GitHub Releases, so users can move between channels. Tidemark's Play app was set up this way on 25 November 2026, before its first upload. These are the steps, for reference or for another app.
 

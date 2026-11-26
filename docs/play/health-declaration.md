@@ -2,7 +2,7 @@
 
 Source text for the Play Console health apps declaration (App content › Health apps, Health Connect permissions). It lists every permission Tidemark requests, the visible feature that uses it, and a justification in English and French to paste into the form.
 
-Check the current form wording when you submit. Field names and length limits change, and this file follows the app, not the form.
+Check the current form wording when you submit. Field names and length limits change, and this file follows the app, not the form. The health features to tick on the first page of the form are in [console-answers.md](console-answers.md#health-apps).
 
 ## Summary for the reviewer
 
