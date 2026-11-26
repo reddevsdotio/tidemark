@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import io.reddevs.tidemark.dashboard.detail.HypnogramModel
 import io.reddevs.tidemark.data.model.DataSource
 import io.reddevs.tidemark.data.model.HistoryAccess
 import io.reddevs.tidemark.data.model.LatestValue
@@ -54,7 +55,7 @@ internal object DashboardSamples {
             Metric.ACTIVE_CALORIES to TileState.Value(412.0, spark(7, 380.0, 520.0, 210.0, 0.0, 640.0, 450.0, 412.0)),
             Metric.DISTANCE to TileState.Value(6240.0, spark(7, 4500.0, 7100.0, 3000.0, null, 9000.0, 5600.0, 6240.0)),
             Metric.SLEEP to TileState.Value(
-                Duration.between(lastNight.start, lastNight.end).seconds.toDouble(),
+                HypnogramModel.of(lastNight).asleep.seconds.toDouble(),
                 spark(7, 25200.0, 27000.0, 23400.0, 28800.0, 26100.0, 24300.0, 26100.0),
                 sleep = lastNight,
             ),

@@ -93,7 +93,7 @@ class DashboardScreenTest {
         assertEquals("Steps, 8,432 steps, Today", description(Metric.STEPS))
         assertEquals("Active calories, 412 kcal, Today", description(Metric.ACTIVE_CALORIES))
         assertEquals("Distance, 3.9 mi, Today", description(Metric.DISTANCE))
-        assertTrue(description(Metric.SLEEP), description(Metric.SLEEP).startsWith("Sleep, 7 h 15 min, "))
+        assertTrue(description(Metric.SLEEP), description(Metric.SLEEP).startsWith("Sleep, 7 h 5 min, "))
         assertTrue(description(Metric.SLEEP), description(Metric.SLEEP).endsWith(", From com.example.sleep"))
         assertEquals("Resting heart rate, 58 bpm, Today, From com.example.watch", description(Metric.RESTING_HEART_RATE))
         assertTrue(description(Metric.WEIGHT), description(Metric.WEIGHT).startsWith("Weight, 159.6 lb, "))

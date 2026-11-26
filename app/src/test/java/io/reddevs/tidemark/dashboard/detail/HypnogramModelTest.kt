@@ -47,8 +47,9 @@ class HypnogramModelTest {
         assertEquals(Duration.ofMinutes(155), byStage[SleepStage.LIGHT])
         assertEquals(Duration.ofMinutes(85), byStage[SleepStage.DEEP])
         assertEquals(Duration.ofMinutes(16), byStage[SleepStage.AWAKE])
-        // Everything except awake (16), awake in bed (12) and out of bed (4), and the 18 minutes of gaps.
-        assertEquals(Duration.between(night.start, night.end) - Duration.ofMinutes(16 + 12 + 4 + 18), model.asleep)
+        // The session minus awake (16), awake in bed (12) and out of bed (4). As in Health Connect's
+        // sleep duration, the 18 minutes of gaps count as sleep.
+        assertEquals(Duration.between(night.start, night.end) - Duration.ofMinutes(16 + 12 + 4), model.asleep)
         assertEquals(Duration.between(night.start, night.end), model.inBed)
     }
 
@@ -78,7 +79,8 @@ class HypnogramModelTest {
             ),
         )
         assertEquals(listOf(SleepStage.LIGHT, SleepStage.DEEP), clipped.rows)
-        assertEquals(Duration.ofMinutes(20), clipped.asleep)
+        // The whole hour: no awake stage, and the uncovered 40 minutes count as sleep.
+        assertEquals(Duration.ofHours(1), clipped.asleep)
         assertEquals(1, clipped.gaps.size)
     }
 

@@ -21,7 +21,7 @@ internal data class HypnogramModel(
     val gaps: List<Span>,
     /** Time per stage, in [rows] order. */
     val totals: List<Pair<SleepStage, Duration>>,
-    /** Sleep time: every stage except the awake and out-of-bed ones. */
+    /** Sleep time: the session minus its awake and out-of-bed stages, as Health Connect counts it. */
     val asleep: Duration,
     /** Session length from start to end. */
     val inBed: Duration,
@@ -83,7 +83,11 @@ internal data class HypnogramModel(
                 stage to spans.filter { it.stage == stage }
                     .fold(Duration.ZERO) { acc, s -> acc + Duration.between(s.start, s.end) }
             }
-            val asleep = totals.filter { it.first !in NOT_ASLEEP }.fold(Duration.ZERO) { acc, p -> acc + p.second }
+            // Health Connect's sleep duration is the session minus its awake stages, so gaps count as
+            // sleep. Matching it keeps this figure equal to the sleep charts and the dashboard tile.
+            val inBed = Duration.between(start, end)
+            val awake = totals.filter { it.first in NOT_ASLEEP }.fold(Duration.ZERO) { acc, p -> acc + p.second }
+            val asleep = (inBed - awake).coerceAtLeast(Duration.ZERO)
 
             return HypnogramModel(
                 start = start,
@@ -93,7 +97,7 @@ internal data class HypnogramModel(
                 gaps = gaps,
                 totals = totals,
                 asleep = asleep,
-                inBed = Duration.between(start, end),
+                inBed = inBed,
                 stageless = stageless,
             )
         }
